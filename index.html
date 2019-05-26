@@ -18,8 +18,8 @@
 <body>
 
     <div id="app">
-        <input v-on:blur="exibirNome('Meu nome é: ', $event)">
-        <p>{{ nome }}</p>
+        <p>Nome: {{ nomeCompleto }}</p>
+        <button @click="alterarNome">Alterar Nome</button>
     </div>
 
     <script type="text/javascript">
@@ -27,13 +27,21 @@
         new Vue({
             el: '#app',
             data: {
-                nome: ''
+                nomeCompleto: 'Thiago Bianeck'
+            },
+            watch: {
+                nomeCompleto: function(novoNomeCompleto, antigoNomeCompleto) {
+                    let vm = this;
+                    setTimeout(function(){
+                        vm.nomeCompleto = 'Nome resetado';
+                    }, 3000);
+                }
             },
             methods: {
-                exibirNome: function (texto, event) {
-                    this.nome = texto + event.target.value;
+                alterarNome: function(event) {
+                    this.nomeCompleto = 'Bianeck Thiago';
                 }
-            }
+            },
         });
 
     </script>
