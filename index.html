@@ -18,10 +18,8 @@
 <body>
 
     <div id="app">
-        <p>Curso: {{ curso }} </p>
-        <a v-bind:href="docs">VueJS</a>
-        <p v-once>Nome inteiro: {{ nome }}</p>
-        <p>Nome: {{ getNome() }}</p>
+        <input v-on:blur="exibirNome('Meu nome é: ', $event)">
+        <p>{{ nome }}</p>
     </div>
 
     <script type="text/javascript">
@@ -29,12 +27,11 @@
         new Vue({
             el: '#app',
             data: {
-                nome: 'Thiago Bianeck'
+                nome: ''
             },
             methods: {
-                getNome: function () {
-                    this.nome = 'Thiago';
-                    return this.nome;
+                exibirNome: function (texto, event) {
+                    this.nome = texto + event.target.value;
                 }
             }
         });
